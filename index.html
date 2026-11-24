@@ -58,6 +58,7 @@ th.l,td.l{text-align:left}
 td.pos{width:36px;font:900 15px Archivo}
 td.mgr .n{font-weight:700}
 td.mgr .t{color:var(--muted);font-size:12px}
+td.fpl{font:800 15px Archivo,sans-serif;color:#963cff}
 td.pts{font:900 17px Archivo}
 tr.me td{background:#00ff8722}
 tr.me td.mgr .n::after{content:"YOU";margin-left:6px;font:800 9px Inter;background:var(--purple);color:var(--green);padding:2px 4px;border-radius:3px;vertical-align:2px}
@@ -99,8 +100,8 @@ footer{padding:22px 0 40px;color:var(--muted);font-size:12px;text-align:center}
 <div class="wrap">
   <main id="view"></main>
   <footer>
-    Win 3 · Draw 1 · Loss 0. Ties broken by points scored (PF).
-    <div class="legend"><span>P played</span><span>W/D/L</span><span>PF points for</span><span>PA points against</span></div>
+    Win 3 · Draw 1 · Loss 0. Ties broken by FPL points scored.
+    <div class="legend"><span>P played</span><span>W/D/L</span><span>FPL Pts: points scored</span><span>PA: points against</span><span>H2H Pts: league points</span></div>
   </footer>
 </div>
 <script>
@@ -171,13 +172,13 @@ function renderTable(v){
   return `<div class="card">
     <div class="card-h"><h2>${v.title}</h2><span class="meta">${v.sub} · ${span}</span></div>
     <div class="leader"><span class="crown">👑</span><div><div class="lbl">Leader</div><div class="n">${esc(L.m)}</div><div class="t">${esc(TEAMS[L.m])}</div></div>
-      <div class="p">${L.pts}<small>pts · ${L.pf} PF</small></div></div>
-    <table><thead><tr><th></th><th class="l">Manager</th><th>P</th><th>W</th><th>D</th><th>L</th><th class="hide-sm">PF</th><th class="hide-sm">PA</th><th>Pts</th><th class="hide-sm">Form</th></tr></thead><tbody>
+      <div class="p">${L.pts}<small>H2H pts · ${L.pf} FPL pts</small></div></div>
+    <table><thead><tr><th></th><th class="l">Manager</th><th>P</th><th>W</th><th>D</th><th>L</th><th class="hide-sm">PA</th><th>FPL<br>Pts</th><th>H2H<br>Pts</th><th class="hide-sm">Form</th></tr></thead><tbody>
     ${rows.map((x,i)=>`<tr class="${x.m===ME?'me':''}">
       <td class="pos">${i+1}</td>
       <td class="l mgr"><div class="n">${esc(x.m)}</div><div class="t">${esc(TEAMS[x.m])}</div></td>
       <td>${x.p}</td><td>${x.w}</td><td>${x.d}</td><td>${x.l}</td>
-      <td class="hide-sm">${x.pf}</td><td class="hide-sm">${x.pa}</td>
+      <td class="hide-sm">${x.pa}</td><td class="fpl">${x.pf}</td>
       <td class="pts">${x.pts}</td>
       <td class="hide-sm"><div class="form">${x.form.slice(-5).map(f=>`<i class="${f}">${f}</i>`).join("")}</div></td></tr>`).join("")}
     </tbody></table></div>`;
