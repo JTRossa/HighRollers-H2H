@@ -10,81 +10,93 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#1a0820; --panel:#260d2f; --panel2:#30123b; --line:#43204f;
-  --text:#f6eefa; --muted:#b9a3c4; --accent:#00e0ff; --accent2:#9b5cff;
-  --win:#21d07a; --draw:#f3c242; --loss:#ff5577; --gold:#ffd54a;
+  --purple:#37003c; --purple2:#2b0030; --cyan:#04f5ff; --green:#00ff87; --pink:#e90052;
+  --grad:linear-gradient(90deg,#04f5ff 0%,#5b8cff 55%,#963cff 100%);
+  --bg:#f3f1f4; --card:#fff; --line:#e8e3ea; --text:#37003c; --muted:#76667a;
+  --win:#00c26e; --draw:#f2b705; --loss:#e90052;
 }
 *{box-sizing:border-box}
 html,body{margin:0}
-body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;font-size:15px;line-height:1.4;
-  background-image:radial-gradient(900px 400px at 10% -10%,#3a0f4a 0,transparent 70%),radial-gradient(700px 300px at 110% 0,#0b3550 0,transparent 70%)}
-.wrap{max-width:860px;margin:0 auto;padding:0 16px 48px}
-header{padding:28px 0 14px}
-.kicker{font:700 12px/1 Inter;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
-h1{font:900 clamp(34px,8vw,56px)/.95 Archivo,sans-serif;margin:8px 0 6px;letter-spacing:-.02em}
-h1 span{background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
-.sub{color:var(--muted);font-size:13px}
-.sub b{color:var(--text);font-weight:600}
-.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px;background:var(--muted)}
-.dot.live{background:var(--win);box-shadow:0 0 0 3px #21d07a33}
-nav{position:sticky;top:0;z-index:5;background:linear-gradient(var(--bg) 70%,transparent);padding:10px 0 12px;margin:0 -16px}
-.tabs{display:flex;gap:8px;overflow-x:auto;padding:0 16px;scrollbar-width:none}
+body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;font-size:15px;line-height:1.4}
+.top{background:var(--purple);color:#fff;position:relative;overflow:hidden}
+.top::after{content:"";position:absolute;right:-120px;top:-120px;width:360px;height:360px;border-radius:50%;
+  background:radial-gradient(circle,#963cff66 0,transparent 65%)}
+.wrap{max-width:860px;margin:0 auto;padding:0 16px}
+header{padding:26px 0 18px;position:relative;z-index:1}
+.kicker{display:inline-block;font:800 11px/1 Inter;letter-spacing:.12em;text-transform:uppercase;color:var(--purple);
+  background:var(--green);padding:5px 8px;border-radius:4px}
+h1{font:900 clamp(32px,8vw,52px)/1 Archivo,sans-serif;margin:12px 0 8px;letter-spacing:-.01em}
+.sub{color:#d9c8de;font-size:13px}
+.sub b{color:#fff;font-weight:700}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px;background:#b9a3c4}
+.dot.live{background:var(--green);box-shadow:0 0 0 3px #00ff8740}
+nav{position:sticky;top:0;z-index:5;background:var(--purple);border-top:1px solid #ffffff14;box-shadow:0 2px 10px #37003c30}
+.tabs{display:flex;gap:4px;overflow-x:auto;padding:0 12px;scrollbar-width:none;max-width:860px;margin:0 auto}
 .tabs::-webkit-scrollbar{display:none}
-.tab{flex:0 0 auto;border:1px solid var(--line);background:var(--panel);color:var(--muted);border-radius:999px;
-  padding:9px 15px;font:600 13px Inter;cursor:pointer;white-space:nowrap}
-.tab[aria-selected=true]{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#120318;border-color:transparent}
+.tab{flex:0 0 auto;border:0;background:none;color:#e6d9ea;padding:14px 12px 12px;font:700 14px Inter;cursor:pointer;
+  white-space:nowrap;border-bottom:4px solid transparent}
+.tab[aria-selected=true]{color:#fff;border-bottom-color:var(--green)}
 .tab.empty{opacity:.45}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden}
-.card-h{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:16px 16px 10px;flex-wrap:wrap}
-.card-h h2{font:800 20px Archivo;margin:0}
-.card-h .meta{color:var(--muted);font-size:12px}
-.leader{display:flex;align-items:center;gap:14px;margin:0 16px 14px;padding:14px;border-radius:12px;
-  background:linear-gradient(90deg,#00e0ff22,#9b5cff22);border:1px solid #9b5cff55}
-.leader .crown{font-size:26px}
-.leader .n{font:800 18px Archivo}
-.leader .t{color:var(--muted);font-size:12px}
-.leader .p{margin-left:auto;text-align:right;font:900 26px Archivo}
-.leader .p small{display:block;font:500 11px Inter;color:var(--muted)}
+main{padding:18px 0 8px}
+.card{background:var(--card);border-radius:10px;overflow:hidden;box-shadow:0 1px 3px #37003c1a}
+.card-h{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:16px 16px 12px;flex-wrap:wrap}
+.card-h h2{font:900 22px Archivo,sans-serif;margin:0}
+.card-h .meta{color:var(--muted);font-size:12px;font-weight:600}
+.leader{display:flex;align-items:center;gap:14px;margin:0 12px 12px;padding:16px;border-radius:10px;background:var(--grad);color:#fff}
+.leader .crown{font-size:24px}
+.leader .lbl{font:800 10px Inter;letter-spacing:.1em;text-transform:uppercase;opacity:.85}
+.leader .n{font:900 19px Archivo}
+.leader .t{font-size:12px;opacity:.9}
+.leader .p{margin-left:auto;text-align:center;background:#fff;color:var(--purple);border-radius:8px;padding:6px 12px;font:900 24px Archivo,sans-serif;line-height:1}
+.leader .p small{display:block;font:700 10px Inter;color:var(--muted);margin-top:3px}
 table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
-th{font:600 11px Inter;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);text-align:center;padding:8px 4px;border-bottom:1px solid var(--line)}
-td{text-align:center;padding:10px 4px;border-bottom:1px solid #ffffff0d}
+thead th{background:var(--purple);color:#fff;font:700 11px Inter;letter-spacing:.04em;text-transform:uppercase;text-align:center;padding:10px 4px}
+td{text-align:center;padding:11px 4px;border-bottom:1px solid var(--line)}
+tbody tr:nth-child(even){background:#faf8fb}
 tr:last-child td{border-bottom:0}
 th.l,td.l{text-align:left}
-td.pos{width:34px;font:800 14px Archivo;color:var(--muted)}
-tr.top td.pos{color:var(--gold)}
-td.mgr .n{font-weight:600}
+td.pos{width:36px;font:900 15px Archivo}
+td.mgr .n{font-weight:700}
 td.mgr .t{color:var(--muted);font-size:12px}
-td.pts{font:900 16px Archivo;color:var(--text)}
-tr.me{background:#00e0ff10}
+td.pts{font:900 17px Archivo}
+tr.me td{background:#00ff8722}
+tr.me td.mgr .n::after{content:"YOU";margin-left:6px;font:800 9px Inter;background:var(--purple);color:var(--green);padding:2px 4px;border-radius:3px;vertical-align:2px}
+.mv{display:inline-block;width:0;height:0;margin-left:4px}
 .form{display:flex;gap:3px;justify-content:center}
-.form i{width:16px;height:16px;border-radius:4px;font:700 9px/16px Inter;font-style:normal;color:#120318}
+.form i{width:17px;height:17px;border-radius:50%;font:800 9px/17px Inter;font-style:normal;color:#fff}
 .form .W{background:var(--win)}.form .D{background:var(--draw)}.form .L{background:var(--loss)}
-.hide-sm{}
-@media (max-width:560px){.hide-sm{display:none}td,th{padding-left:2px;padding-right:2px}}
+@media (max-width:560px){.hide-sm{display:none}td,th{padding-left:2px!important;padding-right:2px!important}}
 .gw{margin-bottom:14px}
-.gw h3{font:800 15px Archivo;margin:0;padding:12px 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between}
-.gw h3 span{font:500 12px Inter;color:var(--muted)}
-.fx{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;padding:10px 16px;border-bottom:1px solid #ffffff0d}
+.gw h3{font:900 16px Archivo,sans-serif;margin:0;padding:12px 16px;background:var(--purple);color:#fff;display:flex;justify-content:space-between}
+.gw h3 span{font:600 12px Inter;color:var(--green)}
+.fx{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--line)}
 .fx:last-child{border-bottom:0}
 .fx .h{text-align:right}.fx .a{text-align:left}
-.fx .n{font-weight:600;font-size:14px}
-.fx .won{color:var(--text)} .fx .lost{color:var(--muted);font-weight:500}
-.score{display:flex;background:#fff;color:#2b0a35;border-radius:7px;font:800 16px Archivo;overflow:hidden}
-.score b{padding:5px 9px;min-width:38px;text-align:center}
-.score b+b{border-left:1px solid #2b0a3533}
+.fx .n{font-weight:700;font-size:14px}
+.fx .t{color:var(--muted);font-size:11px}
+.fx .lost .n{font-weight:500;color:var(--muted)}
+.fx.mine{background:var(--grad);color:#fff}
+.fx.mine .t,.fx.mine .lost .n{color:#ffffffcc}
+.score{display:flex;background:var(--purple);color:#fff;border-radius:6px;font:900 16px Archivo,sans-serif;overflow:hidden}
+.fx.mine .score{background:#fff;color:var(--purple)}
+.score b{padding:6px 9px;min-width:38px;text-align:center}
+.score b+b{border-left:1px solid #ffffff30}
+.fx.mine .score b+b{border-left-color:#37003c30}
 .empty-state{padding:36px 16px;text-align:center;color:var(--muted)}
-footer{margin-top:28px;color:var(--muted);font-size:12px;text-align:center}
-.legend{display:flex;gap:14px;justify-content:center;margin-top:10px;flex-wrap:wrap}
+footer{padding:22px 0 40px;color:var(--muted);font-size:12px;text-align:center}
+.legend{display:flex;gap:14px;justify-content:center;margin-top:8px;flex-wrap:wrap}
 </style>
 </head>
 <body>
-<div class="wrap">
+<div class="top"><div class="wrap">
   <header>
-    <div class="kicker">FPL Head-to-Head</div>
-    <h1>High <span>Rollers</span> 26/27</h1>
+    <div class="kicker">Head-to-Head League</div>
+    <h1>High Rollers 26/27</h1>
     <div class="sub" id="status"><span class="dot"></span>Loading results…</div>
   </header>
-  <nav><div class="tabs" id="tabs" role="tablist"></div></nav>
+</div></div>
+<nav><div class="tabs" id="tabs" role="tablist"></div></nav>
+<div class="wrap">
   <main id="view"></main>
   <footer>
     Win 3 · Draw 1 · Loss 0. Ties broken by points scored (PF).
@@ -104,6 +116,7 @@ const TEAMS = {
   "Francis Redmond":"Azzurri Blues","Rich Blain":"Brooklyn Wanderers"
 };
 const MANAGERS = Object.keys(TEAMS);
+const ME = null; // shared page: no personal highlight
 const MONTHS = ["August","September","October","November","December","January","February","March","April","May"];
 
 let results = [];
@@ -157,11 +170,11 @@ function renderTable(v){
   const L=rows[0];
   return `<div class="card">
     <div class="card-h"><h2>${v.title}</h2><span class="meta">${v.sub} · ${span}</span></div>
-    <div class="leader"><span class="crown">👑</span><div><div class="n">${esc(L.m)}</div><div class="t">${esc(TEAMS[L.m])}</div></div>
+    <div class="leader"><span class="crown">👑</span><div><div class="lbl">Leader</div><div class="n">${esc(L.m)}</div><div class="t">${esc(TEAMS[L.m])}</div></div>
       <div class="p">${L.pts}<small>pts · ${L.pf} PF</small></div></div>
     <table><thead><tr><th></th><th class="l">Manager</th><th>P</th><th>W</th><th>D</th><th>L</th><th class="hide-sm">PF</th><th class="hide-sm">PA</th><th>Pts</th><th class="hide-sm">Form</th></tr></thead><tbody>
-    ${rows.map((x,i)=>`<tr class="${i<3?'top':''}${x.m==='James Teague'?' me':''}">
-      <td class="pos">${i===0?'🥇':i===1?'🥈':i===2?'🥉':i+1}</td>
+    ${rows.map((x,i)=>`<tr class="${x.m===ME?'me':''}">
+      <td class="pos">${i+1}</td>
       <td class="l mgr"><div class="n">${esc(x.m)}</div><div class="t">${esc(TEAMS[x.m])}</div></td>
       <td>${x.p}</td><td>${x.w}</td><td>${x.d}</td><td>${x.l}</td>
       <td class="hide-sm">${x.pf}</td><td class="hide-sm">${x.pa}</td>
@@ -176,10 +189,10 @@ function renderResults(){
   return gws.map(g=>{
     const rs=results.filter(r=>r[0]===g);
     return `<div class="card gw"><h3>Gameweek ${g}<span>${rs[0][1]}</span></h3>
-    ${rs.map(([,,h,hs,as,a])=>`<div class="fx">
-      <div class="h"><div class="n ${hs>=as?'won':'lost'}">${esc(h)}</div></div>
+    ${rs.map(([,,h,hs,as,a])=>`<div class="fx${h===ME||a===ME?' mine':''}">
+      <div class="h ${hs>=as?'':'lost'}"><div class="n">${esc(h)}</div><div class="t">${esc(TEAMS[h])}</div></div>
       <div class="score"><b>${hs}</b><b>${as}</b></div>
-      <div class="a"><div class="n ${as>=hs?'won':'lost'}">${esc(a)}</div></div></div>`).join("")}</div>`;
+      <div class="a ${as>=hs?'':'lost'}"><div class="n">${esc(a)}</div><div class="t">${esc(TEAMS[a])}</div></div></div>`).join("")}</div>`;
   }).join("");
 }
 
